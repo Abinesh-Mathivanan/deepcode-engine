@@ -1,15 +1,13 @@
+# backend/api/v1/code_execution.py
 from fastapi import APIRouter, HTTPException
-from models.execution_request import Req
-from utils.executor import run
+from pydantic import BaseModel
 
-r = APIRouter()
+router = APIRouter()
 
-@r.post("/execute_code")
-async def exec_code(req: Req):
-    try:
-        out, err = run(req.code)
-        if err:
-            raise HTTPException(status_code=500, detail=err)
-        return {"stdout": out, "stderr": err}
-    except Exception as e:
-        raise HTTPException(status_code=500, detail=str(e))
+class CodeInput(BaseModel):
+    code: str
+
+@router.post("/execute_code")
+async def run_code(data: CodeInput):
+    # Replace this with actual code execution logic
+    return {"result": "success"}
