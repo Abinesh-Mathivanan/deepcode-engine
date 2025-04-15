@@ -1,4 +1,3 @@
-# backend/main.py
 from fastapi import FastAPI
 from api.v1.code_execution import router as r
 

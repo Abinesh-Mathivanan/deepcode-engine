@@ -1,13 +1,9 @@
-# backend/api/v1/code_execution.py
-from fastapi import APIRouter, HTTPException
-from pydantic import BaseModel
+from fastapi import APIRouter
+from models.code_models import CodeExecutionRequest
+from services.executor import run_code
 
 router = APIRouter()
 
-class CodeInput(BaseModel):
-    code: str
-
-@router.post("/execute_code")
-async def run_code(data: CodeInput):
-    # Replace this with actual code execution logic
-    return {"result": "success"}
+@router.post("/execute")
+def execute_code(payload: CodeExecutionRequest):
+    return run_code(payload.code, payload.fn_name, payload.test_cases)
