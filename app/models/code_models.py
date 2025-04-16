@@ -1,9 +1,9 @@
 from pydantic import BaseModel
-from typing import List
+from typing import List, Any
 
 class TestCase(BaseModel):
-    input: str
-    expected_output: str
+    input: List[Any]
+    expected_output: Any
 
 class CodeExecutionRequest(BaseModel):
     code: str
