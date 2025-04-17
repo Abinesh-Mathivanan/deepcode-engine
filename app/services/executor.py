@@ -9,7 +9,7 @@ def run_code(code: str, fn: str, test_cases: list):
         f.write(code + "\n")
 
         for i, t in enumerate(test_cases):
-            f.write(f'print("{i}>>>" + str({fn}({t["input"]})))\n')
+            f.write(f'print("{i}>>>" + str({fn}({t.input})))\n')
 
     try:
         start = time.time()
